@@ -1,26 +1,29 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL ?? "http://localhost:3000"),
+  title: "tip on monad",
+  description: "Farcaster Mini App on Monad Testnet",
+  openGraph: {
+    title: "tip on monad",
+    description: "tips • share • simple",
+    images: ["/og"], // ← يولّد PNG
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "tip on monad",
+    description: "tips • share • simple",
+    images: ["/og"], // ← نفس المسار
+  },
+};
 
-import { Providers } from '@/components/providers'
-import './globals.css'
+import "./globals.css";
+import Providers from "./providers";
 
-const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Monad Farcaster MiniApp Template',
-  description: 'A template for building mini-apps on Farcaster and Monad',
-}
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="min-h-dvh">
         <Providers>{children}</Providers>
       </body>
     </html>
-  )
+  );
 }
